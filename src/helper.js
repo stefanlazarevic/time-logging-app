@@ -80,6 +80,10 @@ function pad(numberString, size) {
  * @return {string}
  */
 function convertToHumanReadableTime(miliseconds) {
+    if (!is_number(miliseconds)) {
+        return '00:00:00';
+    }
+
     const seconds = Math.floor((miliseconds / 1000) % 60);
     const minutes = Math.floor((miliseconds / 1000 / 60) % 60);
     const hours = Math.floor(miliseconds / 1000 / 60 / 60);
@@ -97,12 +101,13 @@ function convertToHumanReadableTime(miliseconds) {
  * @param {*} runningSince
  */
 function renderElapsedString(elapsed, runningSince) {
-    let totalElapsed = elapsed;
-    if (runningSince) {
-      totalElapsed += Date.now() - runningSince;
+    if (is_number(elapsed) && is_number(runningSince)) {
+        let totalElapsed = elapsed;
+        if (runningSince) {
+            totalElapsed += Date.now() - runningSince;
+        }
     }
 
-    // console.log(runningSince);
     return convertToHumanReadableTime(totalElapsed);
 }
 
