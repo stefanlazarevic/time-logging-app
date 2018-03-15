@@ -101,8 +101,9 @@ function convertToHumanReadableTime(miliseconds) {
  * @param {*} runningSince
  */
 function renderElapsedString(elapsed, runningSince) {
-    if (is_number(elapsed) && is_number(runningSince)) {
-        let totalElapsed = elapsed;
+    let totalElapsed;
+    if (is_number(elapsed)) {
+        totalElapsed = elapsed;
         if (runningSince) {
             totalElapsed += Date.now() - runningSince;
         }
