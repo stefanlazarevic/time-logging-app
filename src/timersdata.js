@@ -1,18 +1,20 @@
 export default [
     {
         "id": 0,
-        "title": "Timer one",
-        "project": "My first React project",
+        "title": "Laundry",
+        "project": "House task",
         "time": {
-            "end": 1521034250000
+            "runningSince": 0,
+            "elapsed": 0,
         }
     },
     {
         "id": 1,
-        "title": "Timer two",
-        "project": "My second React project",
+        "title": "Learning React.js",
+        "project": "Skill development",
         "time": {
-            "end": 1521034250000
+            "runningSince": 0,
+            "elapsed": 0,
         }
     },
 ];

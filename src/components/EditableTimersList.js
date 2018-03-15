@@ -12,7 +12,10 @@ export default class EditableTimersList extends React.Component {
                                               title={timer.title}
                                               project={timer.project}
                                               time={timer.time}
-                                              inEditForm={false}
+                                              onFormSubmit={this.props.onFormSubmit}
+                                              onDeleteClick={this.props.onDeleteClick}
+                                              onStartClick={this.props.onStartClick}
+                                              onStopClick={this.props.onStopClick}
                                 />
                     })
                 }

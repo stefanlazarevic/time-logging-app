@@ -26,6 +26,15 @@ function is_string(value) {
 }
 
 /**
+ * Determines whether the passed value is an number.
+ * @param {*} value
+ * @returns {boolean}
+ */
+function is_number(value) {
+    return typeof value === 'number' && isFinite(value);
+}
+
+/**
  * Extract value from an object.
  * @param {string} property
  * @param {object} object
@@ -50,8 +59,56 @@ function pluck(property, object) {
     return null;
 };
 
+/**
+ * Append zero to the string n times.
+ * @param {string} numberString
+ * @param {number} size
+ * @return {string}
+ */
+function pad(numberString, size) {
+    if (is_string(numberString), is_number(size)) {
+        let padded = numberString;
+        while (padded.length < size) padded = `0${padded}`;
+        return padded;
+    }
+    return numberString;
+}
+
+/**
+ * Convert miliseconds into human readable time. HH:mm:ss
+ * @param {number} miliseconds
+ * @return {string}
+ */
+function convertToHumanReadableTime(miliseconds) {
+    const seconds = Math.floor((miliseconds / 1000) % 60);
+    const minutes = Math.floor((miliseconds / 1000 / 60) % 60);
+    const hours = Math.floor(miliseconds / 1000 / 60 / 60);
+
+    return [
+        pad(hours.toString(), 2),
+        pad(minutes.toString(), 2),
+        pad(seconds.toString(), 2),
+    ].join(':');
+}
+
+/**
+ * Render elapsed time string.
+ * @param {*} elapsed
+ * @param {*} runningSince
+ */
+function renderElapsedString(elapsed, runningSince) {
+    let totalElapsed = elapsed;
+    if (runningSince) {
+      totalElapsed += Date.now() - runningSince;
+    }
+
+    // console.log(runningSince);
+    return convertToHumanReadableTime(totalElapsed);
+}
+
 const _ = {};
 
 _.pluck = pluck;
+_.renderElapsedString = renderElapsedString;
 
 export default _;

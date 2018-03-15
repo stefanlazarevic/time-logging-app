@@ -11,13 +11,19 @@ export default class EditableTimer extends React.Component {
             inEditForm: this.props.inEditForm
         }
 
-        this.toggleEditForm = this.toggleEditForm.bind(this);
+        this.toggleEditState = this.toggleEditState.bind(this);
+        this.handleUpdateTimer = this.handleUpdateTimer.bind(this);
     }
 
-    toggleEditForm() {
+    toggleEditState() {
         this.setState({
             inEditForm: !this.state.inEditForm,
         });
+    }
+
+    handleUpdateTimer(timerData) {
+        this.props.onFormSubmit(timerData);
+        this.toggleEditState();
     }
 
     render() {
@@ -28,16 +34,21 @@ export default class EditableTimer extends React.Component {
                            project={this.props.project}
                            time={this.props.time}
                            submitText={'Update'}
-                           toggleEditForm={this.toggleEditForm}
+                           toggleEditState={this.toggleEditState}
+                           onFormSubmit={this.handleUpdateTimer}
                 />
             );
         }
 
         return (
             <Timer title={this.props.title}
+                   id={this.props.id}
                    project={this.props.project}
                    time={this.props.time}
-                   toggleEditForm={this.toggleEditForm}
+                   toggleEditState={this.toggleEditState}
+                   onDeleteClick={this.props.onDeleteClick}
+                   onStartClick={this.props.onStartClick}
+                   onStopClick={this.props.onStopClick}
             />
         );
     }

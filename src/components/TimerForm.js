@@ -12,6 +12,7 @@ export default class TimerForm extends React.Component {
 
         this.handleTitleChange = this.handleTitleChange.bind(this);
         this.handleProjectChange = this.handleProjectChange.bind(this);
+        this.submitForm = this.submitForm.bind(this);
     }
 
     handleTitleChange(event) {
@@ -23,6 +24,15 @@ export default class TimerForm extends React.Component {
     handleProjectChange(event) {
         this.setState({
             project: event.target.value,
+        });
+    }
+
+    // Perform onFormSubmit action when form is submited.
+    submitForm() {
+        this.props.onFormSubmit({
+            id: this.props.id,
+            title: this.state.title,
+            project: this.state.project,
         });
     }
 
@@ -44,8 +54,8 @@ export default class TimerForm extends React.Component {
                 </div>
                 <div className="timer__footer panel-footer text-center">
                     <div className="btn-group">
-                        <button type="button" className="btn btn-default" onClick={this.props.handleUpdateTimer}>{this.props.submitText}</button>
-                        <button type="button" className="btn btn-default" onClick={this.props.toggleEditForm}>Cancel</button>
+                        <button type="button" className="btn btn-default" onClick={this.submitForm}>{this.props.submitText}</button>
+                        <button type="button" className="btn btn-default" onClick={this.props.toggleEditState}>Cancel</button>
                     </div>
                 </div>
             </div>

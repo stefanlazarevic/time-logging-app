@@ -7,3 +7,4 @@ What I've learned from this chapter:
 - Conditional rendering
 - How to apply styles directly in JSX
 - defaultValue attibute
+- forceUpdate
